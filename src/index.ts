@@ -1,0 +1,1 @@
+console.log("I´M A DUCK");
