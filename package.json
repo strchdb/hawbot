@@ -2,7 +2,7 @@
   "name": "hawbot",
   "version": "0.0.1",
   "description": "A custom Discord-Bot for notifications",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --loader ts-node/esm src/index.ts"
@@ -25,6 +25,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
+    "discord.js": "^14.13.0",
     "ts-node": "^10.9.1"
   }
 }
