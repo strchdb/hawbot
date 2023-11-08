@@ -1,1 +1,1 @@
-console.log("I´M A DUCK");
+console.log("IM A DUCK");
