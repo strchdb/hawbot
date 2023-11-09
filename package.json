@@ -1,8 +1,8 @@
 {
   "name": "hawbot",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A custom Discord-Bot for notifications",
-  "main": "index.ts",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/index.js"
@@ -13,7 +13,7 @@
   },
   "keywords": [
     "discordjs",
-    "duck"
+    "haw"
   ],
   "author": "Momo, Basti",
   "license": "ISC",
