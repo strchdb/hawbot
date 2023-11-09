@@ -2,12 +2,11 @@ const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName('addrole')
-    .setDescription('Add a role to a user')
-    .addUserOption(option => option.setName('user').setDescription('Select the user').setRequired(true))
-    .addRoleOption(option => option.setName('role').setDescription('Select the role to add').setRequired(true)),
+    .setName('anmelden')
+    .setDescription('Meldet euch für einen Kurs an, um zukünftig Benachrichtigungen zu erhalten!')
+    .addRoleOption(option => option.setName('Kurs').setDescription('Wählt einen Kurs aus').setRequired(true)),
   async execute(interaction) {
-    const user = interaction.options.getUser('user');
+    const user = interaction.user;
     const role = interaction.options.getRole('role');
 
     if (user && role) {
@@ -15,13 +14,13 @@ module.exports = {
 
       try {
         await member.roles.add(role);
-        await interaction.reply(`Successfully added the role ${role.name} to ${user.tag}`);
+        await interaction.reply(`${user.tag} wurde erfolgreich eingeschrieben für  ${role.name}`);
       } catch (error) {
-        console.error('Error adding role:', error);
-        await interaction.reply('There was an error adding the role.');
+        console.error('Error:', error);
+        await interaction.reply('Fehler beim Einschreiben');
       }
     } else {
-      await interaction.reply('User or role not found.');
+      await interaction.reply('Kurs nicht gefunden');
     }
   },
 };
