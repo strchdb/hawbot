@@ -22,6 +22,6 @@ jobs:
 
           ssh -i deploy_key -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'pm2 stop hawbot'
 
-          scp -i deploy_key -o StrictHostKeyChecking=no -r ./src/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
+          scp -i deploy_key -o StrictHostKeyChecking=no -r ./* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
 
           ssh -i deploy_key -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'cd /root/deployments/hawbot && npm install && pm2 start hawbot'
