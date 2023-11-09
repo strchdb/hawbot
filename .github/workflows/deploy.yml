@@ -21,19 +21,14 @@ jobs:
       - name: Install project dependencies
         run: npm install
 
-      - name: Build the TypeScript project
-        run: npm run build
-
       - name: Deploy to Server
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          TOKEN: ${{ secrets.DISCORD.TOKEN }}
         run: |
           echo "$SSH_PRIVATE_KEY" > deploy_key
           chmod 600 deploy_key
 
           ssh -i deploy_key -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'pm2 stop hawbot'
-          scp -i deploy_key -o StrictHostKeyChecking=no -r ./dist/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
+          scp -i deploy_key -o StrictHostKeyChecking=no -r ./app/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
           scp -i deploy_key -o StrictHostKeyChecking=no -r ./node_modules ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
-          ssh -i deploy_key -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'echo "$TOKEN" > /root/deployments/hawbot/.env'
           ssh -i deploy_key -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'pm2 start hawbot'
