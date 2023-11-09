@@ -5,8 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --loader ts-node/esm src/index.ts",
-    "build": "tsc"
+    "start": "node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -22,12 +21,9 @@
     "url": "https://github.com/strchdb/hawbot/issues"
   },
   "homepage": "https://github.com/strchdb/hawbot#readme",
-  "devDependencies": {
-    "typescript": "^5.2.2"
-  },
+  "devDependencies": {},
   "dependencies": {
     "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1",
-    "ts-node": "^10.9.1"
+    "dotenv": "^16.3.1"
   }
 }
