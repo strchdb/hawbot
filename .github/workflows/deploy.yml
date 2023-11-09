@@ -29,6 +29,6 @@ jobs:
           chmod 600 deploy_key
 
           ssh -i deploy_key -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'pm2 stop hawbot'
-          scp -i deploy_key -o StrictHostKeyChecking=no -r ./app/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
+          scp -i deploy_key -o StrictHostKeyChecking=no -r ./src/* ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
           scp -i deploy_key -o StrictHostKeyChecking=no -r ./node_modules ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}}:/root/deployments/hawbot
           ssh -i deploy_key -o StrictHostKeyChecking=no ${{secrets.SSH_USER}}@${{secrets.SSH_HOST}} 'pm2 start hawbot'
