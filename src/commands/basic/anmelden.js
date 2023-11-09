@@ -14,27 +14,27 @@ module.exports = {
     ),
   async execute(interaction) {
     const user = interaction.user;
-    const roleToAssign = interaction.options.getRole("kurs");
+    const selectedRole = interaction.options.getRole("kurs");
 
-    if (user && roleToAssign) {
+    if (user && selectedRole) {
       const member = interaction.guild.members.cache.get(user.id);
 
-      // Ausschließen bestimmter Rollen
+      // Ausschließen bestimmter Rollen basierend auf dem ausgewählten Kurs
       const excludedRoles = ["HAW Student", "botDev"];
 
-      if (excludedRoles.some((excludedRole) => member.roles.cache.some((role) => role.name === excludedRole))) {
-        await interaction.reply("Du kannst diese Rolle nicht erhalten.");
+      if (excludedRoles.includes(selectedRole.name)) {
+        await interaction.reply("Du kannst dich in diesen Kurs nicht einschreiben");
         return;
       }
 
       try {
         // Überprüfen, ob die Rolle bereits zugewiesen ist
-        if (member.roles.cache.some((role) => role.name === roleToAssign.name)) {
-          await interaction.reply(`${user.tag} ist bereits für ${roleToAssign.name} eingeschrieben.`);
+        if (member.roles.cache.some((role) => role.name === selectedRole.name)) {
+          await interaction.reply(`${user.tag} ist bereits für ${selectedRole.name} eingeschrieben.`);
         } else {
           // Rolle hinzufügen, wenn nicht bereits vorhanden
-          await member.roles.add(roleToAssign);
-          await interaction.reply(`${user.tag} wurde erfolgreich eingeschrieben für ${roleToAssign.name}`);
+          await member.roles.add(selectedRole);
+          await interaction.reply(`${user.tag} wurde erfolgreich eingeschrieben für ${selectedRole.name}`);
         }
       } catch (error) {
         console.error("Error:", error);
