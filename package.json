@@ -21,9 +21,10 @@
     "url": "https://github.com/strchdb/hawbot/issues"
   },
   "homepage": "https://github.com/strchdb/hawbot#readme",
-  "devDependencies": {},
   "dependencies": {
+    "axios": "^1.6.1",
     "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "ical.js": "^1.5.0"
   }
 }
